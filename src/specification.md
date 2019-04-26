@@ -44,3 +44,18 @@ error[E0282]: type annotations needed
 ### Scalar Types
 
 A *scalar type* represents a single value. Mun has four primary scalar types: integers, floating-point numbers, Booleans, and characters.
+
+#### Integer Types
+
+An integer is a number without a fractional component. Table 3-1 shows the built-in integer types in Mun. Signed integer types start with `i`, unsigned integer types with `u`, followed by the number of bits that the integer value takes up.
+
+| Length  | Signed  | Unsigned |
+|:-------:|:-------:|:--------:|
+| 8-bit   | `i8`    | `u8`     |
+| 16-bit  | `i16`   | `u16`    |
+| 32-bit  | `i32`   | `u32`    |
+| 64-bit  | `i64`   | `u64`    |
+| 128-bit | `i128`  | `u128`   |
+| arch    | `isize` | `usize`  |
+
+**Table 2-1: Integer types in Mun**
