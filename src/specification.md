@@ -11,3 +11,36 @@ Lua amplifies this issue due to its dynamic and flexible nature. *It would be gr
 Even though Lua offers immense flexibility, we noticed that certain opinionated patterns recur a lot and as such have become standard practice. Introducing these practices assists us in daily development a lot, but requires more code and complexity than desirable. [*Having syntactic sugar would greatly help reduce complexity in our code base*]
 
 Rapid iteration is key to prototyping game concepts and features. *Proper IDE-integration of a scripting language gives a huge boost to productivity.*
+
+
+# Basic Concepts
+
+This chapter describes the basic concepts of the language.
+
+## Values and Types
+
+Mun is a *statically typed language*, which means that the types of all variables must be known at compile time. The compiler can usually infer a variable's type based on its assigned value and its usage. In cases where multiple types are possible, a type annotation must be added.
+
+[Rust](https://doc.rust-lang.org/book/ch03-02-data-types.html) handles it as follows:
+
+```rust
+
+let guess: u32 = "42".parse().expect("Not a number!");
+```
+
+When type annotation is not provided, Rust will display the following error, indicating that the compiler needs more information to determine the variable's type:
+
+```rust
+error[E0282]: type annotations needed
+ --> src/main.rs:2:9
+  |
+2 |     let guess = "42".parse().expect("Not a number!");
+  |         ^^^^^
+  |         |
+  |         cannot infer type for `_`
+  |         consider giving `guess` a type
+```
+
+### Scalar Types
+
+A *scalar type* represents a single value. Mun has four primary scalar types: integers, floating-point numbers, Booleans, and characters.
