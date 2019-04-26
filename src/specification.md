@@ -59,3 +59,26 @@ An integer is a number without a fractional component. Table 3-1 shows the built
 | arch    | `isize` | `usize`  |
 
 **Table 2-1: Integer types in Mun**
+
+What values are first-class citizens?
+
+Go | Lua | Python | Rust
+:-:|:---:|:------:|:---:
+? | All | ? | ?
+
+What basic types are supported?
+
+|Lua  |
+|:---:|
+| nil |
+| boolean |
+| number¹ (float ∨ integer) |
+| string (encoding-agnostic) |
+| function |
+| userdata |
+| thread |
+| table |
+
+¹) Can be either 32-bit or 64-bit depending on a macro setting
+
+²) Size depends on the target architecture
