@@ -45,9 +45,9 @@ All values in Mun are *first-class citizens*; allowing them to be stored in vari
 
 Mun has seven basic types: Booleans, numbers, options, strings, functions, userdata, and tables. 
 
-The *boolean* type has two values, **true** and **false**, that are used to evaluate conditions.
+The `boolean` type has two values, **true** and **false**, that are used to evaluate conditions.
 
-The *number* type uses two internal representations - or subtypes - called *integer* and *float*. The former is used to represent a number without a fractional component, whereas the latter represents real (floating-point) numbers. Mun has explicit rules about when each representation is used, but provides automatic conversions between them at compile time, as long as the conversion does not cause undefined behaviour. By default Mun uses 32-bit signed integers and single-precision (32-bit) floats, but the user can instruct the compiler to use explicit types. If you are unsure which type to use, Mun's defaults are generally a good choice, as these types are generally the fastest - even on 64-bit systems.
+The `number` type uses two internal representations - or subtypes - called *integer* and *float*. The former is used to represent a number without a fractional component, whereas the latter represents real (floating-point) numbers. Mun has explicit rules about when each representation is used, but provides automatic conversions between them at compile time, as long as the conversion does not cause undefined behaviour. By default Mun uses 32-bit signed integers and single-precision (32-bit) floats, but the user can instruct the compiler to use explicit types. If you are unsure which type to use, Mun's defaults are generally a good choice, as these types are generally the fastest - even on 64-bit systems.
 
 Table 3-1 shows the built-in integer types in Mun. Each variant can be either signed or unsigned and has an explicit size. *Signed* and *unsigned* refer to whether it is necessary to have a sign that indicates the possibility for the number to be negative or positive.
 
