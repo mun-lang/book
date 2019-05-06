@@ -178,11 +178,65 @@ of the same size (i.e. `i32` and `f32` or `i64` and `f64`)?
 
 ## Lexical Conventions
 
+Mun is a *free-form* language. It ignores spaces (including new lines), except 
+as delimiters between names and keywords. *Comments* are also ignored by the 
+compiler.
+
+Single-line comments start with two forward slashes (`//`), whereas multi-line 
+comments start with a forward slash and asterisk (`/*`), and close with the 
+same characters in opposite ordering (`*/`).
+
+```rust
+// An example of a single-line comment
+
+/* An example of a multi-line comment
+   More information can be added here.
+ */
+```
+
 ## Variables
+
+Variable names are case sensitive. Valid variable names to start with a letter 
+or underscore, followed by any number of letters, numbers or underscores. 
+Variables must be assigned an initial value.
+
+```rust
+    let x = 5;
+```
+
+The compiler can usually infer a variable's type based on its assigned value 
+and its usage. If the user wants more control over the variable type or in 
+cases where multiple types are possible, a type annotation must be added.
+
+```rust
+  let x = 5.0;
+  let y: number = 5.0;
+  let z: f32 = 5.0;
+```
+
+By default variables are *immutable*, which means that you cannot change the 
+value once it has been bound to a name. To make variables *mutable* add the 
+`mut` keyword
+
+```rust
+    let mut x = 5;
+    x = 6;
+```
 
 ## Statements
 
 ### Blocks
+
+Blocks are a group of several expressions. The syntax of a block is:
+
+```rust
+{
+    let x = 5;
+    let mut y = 3;
+    // ...
+    y = 4;
+}
+```
 
 ### Chunks
 
