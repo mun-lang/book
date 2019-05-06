@@ -168,7 +168,51 @@ of the same size (i.e. `i32` and `f32` or `i64` and `f64`)?
 > value that probably is not what you were expecting it to have. Relying on
 > integer overflow’s wrapping behavior is considered an error.
 
+## Error Handling
 
+## Garbage Collection / Lifetimes
+
+## Coroutines
+
+# The Language
+
+## Lexical Conventions
+
+## Variables
+
+## Statements
+
+### Blocks
+
+### Chunks
+
+### Assignment
+
+### Control Structures
+
+### For Statement
+
+### Function Calls as Statements
+
+## Expressions
+
+### Arithmetic Operators
+
+### Bitwise Operators
+
+### Coercions and Conversions
+
+### Relational Operators
+
+### Logical Operators
+
+### Concatenation
+
+### Precedence
+
+### Function Calls
+
+### Function Definitions
 
 # Comparison to Lua
 
