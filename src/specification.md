@@ -4,13 +4,29 @@
 
 ## Case Study: Lua @ Abbey Games
 
-Changes in Lua code can have large implications throughout the entire codebase and since we cannot oversee the entire codebase at all times runtime errors are bound to occur. Runtime errors are nasty beasts because they can pop up after a long period of time and after work on the offending piece of code has already finished. They are also often detected by someone different from the person who worked on the code. This causes great frustration and delay, let alone when the runtime error is detected by a user of the software.
+Changes in Lua code can have large implications throughout the entire codebase 
+and since we cannot oversee the entire codebase at all times runtime errors are 
+bound to occur. Runtime errors are nasty beasts because they can pop up after a 
+long period of time and after work on the offending piece of code has already 
+finished. They are also often detected by someone different from the person who 
+worked on the code. This causes great frustration and delay, let alone when the 
+runtime error is detected by a user of the software.
 
-Lua amplifies this issue due to its dynamic and flexible nature. *It would be great if we could turn some of these runtime errors into compile time errors.* That way programmers are notified of errors way before someone else runs into them. The risk of causing implicit runtime errors causes programmers to distrust their refactoring tools. This in turn reduces the likelihood of programmers refactoring their code.
+Lua amplifies this issue due to its dynamic and flexible nature. *It would be 
+great if we could turn some of these runtime errors into compile time errors.* 
+That way programmers are notified of errors way before someone else runs into 
+them. The risk of causing implicit runtime errors causes programmers to 
+distrust their refactoring tools. This in turn reduces the likelihood of 
+programmers refactoring their code.
 
-Even though Lua offers immense flexibility, we noticed that certain opinionated patterns recur a lot and as such have become standard practice. Introducing these practices assists us in daily development a lot, but requires more code and complexity than desirable. [*Having syntactic sugar would greatly help reduce complexity in our code base*]
+Even though Lua offers immense flexibility, we noticed that certain opinionated 
+patterns recur a lot and as such have become standard practice. Introducing 
+these practices assists us in daily development a lot, but requires more code 
+and complexity than desirable. [*Having syntactic sugar would greatly help 
+reduce complexity in our code base*]
 
-Rapid iteration is key to prototyping game concepts and features. *Proper IDE-integration of a scripting language gives a huge boost to productivity.*
+Rapid iteration is key to prototyping game concepts and features. *Proper 
+IDE-integration of a scripting language gives a huge boost to productivity.*
 
 
 # Basic Concepts
@@ -19,16 +35,22 @@ This chapter describes the basic concepts of the language.
 
 ## Values and Types
 
-Mun is a *statically typed language*, which means that the types of all variables must be known at compile time. The compiler can usually infer a variable's type based on its assigned value and its usage. In cases where multiple types are possible, a type annotation must be added.
+Mun is a *statically typed language*, which means that the types of all 
+variables must be known at compile time. The compiler can usually infer a 
+variable's type based on its assigned value and its usage. In cases where 
+multiple types are possible, a type annotation must be added.
 
-[Rust](https://doc.rust-lang.org/book/ch03-02-data-types.html) handles it as follows:
+[Rust](https://doc.rust-lang.org/book/ch03-02-data-types.html) handles it as 
+follows:
 
 ```rust
 
 let guess: u32 = "42".parse().expect("Not a number!");
 ```
 
-When type annotation is not provided, Rust will display the following error, indicating that the compiler needs more information to determine the variable's type:
+When type annotation is not provided, Rust will display the following error, 
+indicating that the compiler needs more information to determine the variable's 
+type:
 
 ```rust
 error[E0282]: type annotations needed
@@ -41,15 +63,30 @@ error[E0282]: type annotations needed
   |         consider giving `guess` a type
 ```
 
-All values in Mun are *first-class citizens*; allowing them to be stored in variables, passed as arguments to other functions, and returned as results.
+All values in Mun are *first-class citizens*; allowing them to be stored in 
+variables, passed as arguments to other functions, and returned as results.
 
-Mun has seven basic types: Booleans, numbers, options, strings, functions, userdata, and tables. 
+Mun has seven basic types: Booleans, numbers, options, strings, functions, 
+userdata, and tables. 
 
-The `boolean` type has two values, **true** and **false**, that are used to evaluate conditions.
+The `boolean` type has two values, **true** and **false**, that are used to 
+evaluate conditions.
 
-The `number` type uses two internal representations - or subtypes - called *integer* and *float*. The former is used to represent a number without a fractional component, whereas the latter represents real (floating-point) numbers. Mun has explicit rules about when each representation is used, but provides automatic conversions between them at compile time, as long as the conversion does not cause undefined behaviour. By default Mun uses 32-bit signed integers and single-precision (32-bit) floats, but the user can instruct the compiler to use explicit types. If you are unsure which type to use, Mun's defaults are generally a good choice, as these types are generally the fastest - even on 64-bit systems.
+The `number` type uses two internal representations - or subtypes - called 
+*integer* and *float*. The former is used to represent a number without a 
+fractional component, whereas the latter represents real (floating-point) 
+numbers. Mun has explicit rules about when each representation is used, but 
+provides automatic conversions between them at compile time, as long as the 
+conversion does not cause undefined behaviour. By default Mun uses 32-bit 
+signed integers and single-precision (32-bit) floats, but the user can instruct 
+the compiler to use explicit types. If you are unsure which type to use, Mun's 
+defaults are generally a good choice, as these types are generally the fastest 
+\- even on 64-bit systems.
 
-Table 3-1 shows the built-in integer types in Mun. Each variant can be either signed or unsigned and has an explicit size. *Signed* and *unsigned* refer to whether it is necessary to have a sign that indicates the possibility for the number to be negative or positive.
+Table 3-1 shows the built-in integer types in Mun. Each variant can be either 
+signed or unsigned and has an explicit size. *Signed* and *unsigned* refer to 
+whether it is necessary to have a sign that indicates the possibility for the 
+number to be negative or positive.
 
 | Length  | Signed  | Unsigned |
 |:-------:|:-------:|:--------:|
@@ -61,9 +98,15 @@ Table 3-1 shows the built-in integer types in Mun. Each variant can be either si
 
 **Table 2-1: Integer types in Mun**
 
-Signed integer types start with `i`, unsigned integer types with `u`, followed by the number of bits that the integer value takes up. Each signed variant can store numbers from -(2<sup>n - 1</sup>) to 2<sup>n - 1</sup> - 1 inclusive, where *n* is the number of bits that variant uses. Unsigned variants can store numbers from 0 to 2<sup>n - 1</sup>.
+Signed integer types start with `i`, unsigned integer types with `u`, followed 
+by the number of bits that the integer value takes up. Each signed variant can 
+store numbers from -(2<sup>n - 1</sup>) to 2<sup>n - 1</sup> - 1 inclusive, 
+where *n* is the number of bits that variant uses. Unsigned variants can store 
+numbers from 0 to 2<sup>n - 1</sup>.
 
-You can write integer literals in any of the forms shown in Table 2-2. Note that all number literals allow a type suffix, such as `57u8`, and `_` as a visual separator, such as `1_000`.
+You can write integer literals in any of the forms shown in Table 2-2. Note 
+that all number literals allow a type suffix, such as `57u8`, and `_` as a 
+visual separator, such as `1_000`.
 
 | Number literals  | Example       |
 |------------------|---------------|
@@ -74,27 +117,46 @@ You can write integer literals in any of the forms shown in Table 2-2. Note that
 
 **Table 2-2: Integer literals in Mun**
 
-Mun also has two primitive types for floating-point numbers, represented according to the IEEE-754 standard. The `f32` type is a single-precision float, and `f64` has double precision.
+Mun also has two primitive types for floating-point numbers, represented 
+according to the IEEE-754 standard. The `f32` type is a single-precision float, 
+and `f64` has double precision.
 
-Mun can call (and manipulate) functions written in Mun and functions written in Rust. Both are represented by the `function` type.
+Mun can call (and manipulate) functions written in Mun and functions written in 
+Rust. Both are represented by the `function` type.
 
-The `userdata` type is provided to allow arbitrary Rust data to be stored in Mun variables. A userdata value represents a block of raw memory. There are two kinds of userdata: *full userdata*, which is an object with a block of memory managed by Mun, and *light* userdata, which is simply an mutable Rust pointer reference. Userdata has no predefined operations in Mun, except assignment and identity test. By using *metatables* the programmer can define operations for full userdata values. Userdata values cannot be created or modified in Mun, only through the Rust API. This guarantees the integrity of data owned by the host program.
+The `userdata` type is provided to allow arbitrary Rust data to be stored in 
+Mun variables. A userdata value represents a block of raw memory. There are two 
+kinds of userdata: *full userdata*, which is an object with a block of memory 
+managed by Mun, and *light* userdata, which is simply an mutable Rust pointer 
+reference. Userdata has no predefined operations in Mun, except assignment and 
+identity test. By using *metatables* the programmer can define operations for 
+full userdata values. Userdata values cannot be created or modified in Mun, 
+only through the Rust API. This guarantees the integrity of data owned by the 
+host program.
 
-The `table` type implements associative arrays, meaning arrays can have any Mun value, except **none** and NaN, as indices. Tables can be *heterogeneous*; i.e. they can contain values of all types, except *none*. Any key with value *none* is not considered part of the table. Conversely, any key that is not part of a table has an associated value of *none*.
+The `table` type implements associative arrays, meaning arrays can have any Mun 
+value, except **none** and NaN, as indices. Tables can be *heterogeneous*; i.e. 
+they can contain values of all types, except *none*. Any key with value *none* 
+is not considered part of the table. Conversely, any key that is not part of a 
+table has an associated value of *none*.
 
 > *Not a Number* is a special value used to represent undefined or unrepresentable numerical results, such as 0/0.
 
-[discussion] Rust’s defaults are generally good choices, and integer types default to `i32`: this type is generally the fastest, even on 64-bit systems. For floating-point numbers, the default type is `f64` because on modern CPUs it’s roughly the same speed as `f32` but is capable of more precision.
-[question] Do we want to follow the same standard, or rather stick with types of the same size (i.e. `i32` and `f32` or `i64` and `f64`)?
+[discussion] Rust’s defaults are generally good choices, and integer types 
+default to `i32`: this type is generally the fastest, even on 64-bit systems. 
+For floating-point numbers, the default type is `f64` because on modern CPUs 
+it’s roughly the same speed as `f32` but is capable of more precision.
+[question] Do we want to follow the same standard, or rather stick with types 
+of the same size (i.e. `i32` and `f32` or `i64` and `f64`)?
 
 > ##### Integer Overflow
 >
-> Let’s say you have a variable of type `u8` that can hold values between 0 and 255.
-> If you try to change the variable to a value outside of that range, such
-> as 256, *integer overflow* will occur. Mun has some interesting rules involving
-> this behavior. When you are compiling in debug mode, Mun includes checks for
-> integer overflow that cause your program to *panic* at runtime if
-> this behavior occurs. Mun uses the term panicking when a program exits with
+> Let’s say you have a variable of type `u8` that can hold values between 0 and 
+> 255. If you try to change the variable to a value outside of that range, such 
+> as 256, *integer overflow* will occur. Mun has some interesting rules 
+> involving this behavior. When you are compiling in debug mode, Mun includes 
+> checks for integer overflow that cause your program to *panic* at runtime if 
+> this behavior occurs. Mun uses the term panicking when a program exits with 
 > an error.
 >
 > When you are compiling in release mode with the `--release` flag, Mun does
@@ -110,7 +172,8 @@ The `table` type implements associative arrays, meaning arrays can have any Mun 
 
 # Comparison to Lua
 
- - The type `nil` was removed in favor of *option*. As such the value **nil** was replaced by **none**.
+ - The type `nil` was removed in favor of *option*. As such the value **nil** 
+   was replaced by **none**.
  - Mun interfaces with a Rust API instead of a C API.
 
 
