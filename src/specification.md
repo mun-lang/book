@@ -196,7 +196,7 @@ same characters in opposite ordering (`*/`).
 
 ## Variables
 
-Variable names are case sensitive. Valid variable names to start with a letter 
+Variable names are case sensitive. Valid variable names start with a letter 
 or underscore, followed by any number of letters, numbers or underscores. 
 Variables must be assigned an initial value.
 
