@@ -1,0 +1,6 @@
+[book]
+authors = ["Bas Zalmstra"]
+language = "en"
+multilingual = false
+src = "src"
+title = "The Mun Programming Language"
