@@ -5,5 +5,4 @@
 ## Types
 
 - [Types](ch01-00-types.md)
-    - [Numeric types](ch01-01-numeric-types.md)
 
