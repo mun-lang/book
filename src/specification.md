@@ -2,6 +2,38 @@
 
 # Introduction
 
+During the development of real-time applications such as games, developers often find themselves
+stuck in an iterative loop of: write code, compile, start application, test code, close application,
+fix code. Hot reloading - the process of changing code and resources while a product is live - is
+often used to mitigate this productivity drain. While it is usually straightforward to implement
+hot reloading for function logic, reloading an application’s state when data structures have been
+edited is a lot more complicated.
+
+Mun is a statically typed, embeddable scripting language designed for developer productivity. The
+language treats hot reloading as a first-class citizen, but - as opposed to popular scripting
+languages such as Lua and Javascript - Mun aims to catch errors at compile time instead of runtime,
+to guarantee quick iteration times. By building a compiler front-end and runtime that communicate
+changes in both function logic and data structures, shortcomings in other hot reloadable scripting
+languages can be overcome, allowing for a seamless developer experience where an application
+doesn’t have to be closed before changes take effect.
+
+## Alternatives
+
+There are several other application programming / scripting languages (illustrated in Table 1-1)
+that support hot reloading, but they are limited to reloading of function logic only.
+
+| Language | Compilation | Hot reloading | PC | Mac | Linux | PS4 | XBOX |
+|----------|:-----------:|:-------------:|:--:|:---:|:-----:|:---:|:----:|
+| **C# (.NET)** | AOT | ✔ (only functions) | ✔ | ✘ | ✘ | ? | ✔ |
+| **C# (MONO)** | AOT | ✔ (only functions) | ✔ | ✔ | ✔ | ✔ | ✔ | 
+| **Lua** | Interpreted | ✔ (only functions) | ✔ | ✔ | ✔ | ✔ | ✔ | 
+| **LuaJIT** | JIT | ✔ (only functions) | ✔ | ✔ | ✔ | ✘ | ✘ |
+| **Python** | Interpreted | ✔ (only functions) | ✔ | ✔ | ✔ | ? | ? |
+
+**Table 1-1: Alternative application programming languages**
+
+
+
 ## Case Study: Lua @ Abbey Games
 
 Changes in Lua code can have large implications throughout the entire codebase 
@@ -27,7 +59,6 @@ reduce complexity in our code base*]
 
 Rapid iteration is key to prototyping game concepts and features. *Proper 
 IDE-integration of a scripting language gives a huge boost to productivity.*
-
 
 # Basic Concepts
 
