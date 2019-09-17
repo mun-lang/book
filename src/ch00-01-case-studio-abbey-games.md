@@ -5,10 +5,11 @@ A collection of case studies that inspired the design choices made in Mun.
 ## Abbey Games
 
 Abbey Games uses Lua as its main gameplay programming language because of Lua's
-ability to hot reload code. This allows for very rapid iteration of game code, enabling
-gameplay programmers and designers to quickly test and tweak systems and
-content. Lua is a dynamically typed, JIT compiled language. Although this has
-some definite advantages, it also introduces a lot of problems with bigger codebases.
+ability to hot reload code. This allows for very rapid iteration of game code,
+enabling gameplay programmers and designers to quickly test and tweak systems
+and content. Lua is a dynamically typed, JIT compiled language. Although this
+has some definite advantages, it also introduces a lot of problems with bigger
+codebases.
 
 Changes in Lua code can have large implications throughout the entire codebase
 and since we cannot oversee the entire codebase at all times runtime errors are
@@ -28,9 +29,9 @@ refactoring their code.
 Even though Lua offers immense flexibility, we noticed that certain opinionated
 patterns recur a lot and as such have become standard practice. Introducing
 these practices assists us in daily development a lot, but requires more code
-and complexity than desirable. Having syntactic sugar would greatly help
-reduce complexity in our code base, but would also introduce *magic* or custom
-keywords that are foreign to both new developers and IDE's. 
+and complexity than desirable. Having syntactic sugar would greatly help reduce
+complexity in our code base, but would also introduce *magic* or custom keywords
+that are foreign to both new developers and IDE's. 
 
 Rapid iteration is key to prototyping game concepts and features. *Proper
 IDE-integration of a scripting language gives a huge boost to productivity.*
