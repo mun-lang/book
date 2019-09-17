@@ -5,35 +5,34 @@
 
 *Mun* is an embedable scripting language designed for developer productivity. 
 
-* **Ahead of time compiled**
-  Mun is ahead of time (AOT) compiled instead of interpreted or JITed. This
-  enables catching a lot of errors at compile time instead of at runtime. AOT
-  compilation allows developers to stay in their IDE instead of having to debug
+* **Ahead of time compilation**
+  Mun is compiled ahead of time (AOT), as opposed to being interpreted or compiled just in time (JIT).
+  By detecting type errors during AOT compilation, an entire class of runtime errors is eliminated.
+  Whereas developers of interpreted or JIT compiled languages have to constantly switch between their IDE and target application to debug runtime errors, an AOT compiled language allows developers to stay within the comfort of their IDE.
   the target application to check for runtime errors. 
 
 * **Statically typed**
-  Mun uses types that are resolved at compilation time instead of at runtime.
-  This enables powerful refactoring tools and better error detection at the time
-  of writing the code vs running the code.
+  Mun resolves types at compilation time instead of at runtime, resulting in
+  immediate feedback when writing code and opening the door for powerful
+  refactoring tools.
 
 * **First class hot-reloading**
-  Mun is written from the ground up with hot-reloading in mind. Hot-reloading
-  enables developers to alter the code while its executing. There no longer is a
-  need to start/stop the application, changing functions, values or classes take
-  effect instantly without restarting the target application. 
+  Every aspect of Mun is designed with hot reloading in mind. Hot reloading is the
+  process of changing code and resources of a live application, removing the need
+  to start, stop and recompile an application whenever a function or value needs to
+  be changed.```
 
 * **Performance** 
-  Mun compiles the code to optimized machine code using LLVM. Together with
-  static typing this enables native performance. Hot-reloading is enabled by
-  default which adds a little bit of overhead at runtime, however, for
-  production builds hot-reloading can also be turned off which removes all
-  overhead.
+  Mun compiles code to optimized machine code using LLVM. In combination with
+  static typing this guarantees native runtime performance. Hot reloading does
+  introduce a slight runtime overhead, but it can be disabled for production
+  builds to ensure the best possible runtime performance.
 
 * **Cross compilation**
   The Mun compiler is able to compile to all supported target platforms from any
   supported compiler platform. 
 
 * **Powerful IDE integration**
-  The Mun language and compiler framework are designed from the ground up to
-  support queries on the source code which enable powerful IDE integration like
+  The Mun language and compiler framework are designed to
+  support source code queries, allowing for powerful IDE integrations such as
   code completion and refactoring tools.

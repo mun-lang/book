@@ -1,30 +1,30 @@
 # Types
 
-Mun is a statically typed languages which helps to detect type-related errors in
-a program at compile-time. A type error is an invalid operation on a given type
-such as a division by a string, trying to access a field that doesn't exist or
+Mun is a statically typed language, which helps to detect type-related errors at
+compile-time. A type error is an invalid operation on a given type, such as an
+integer divided by a string, trying to access a field that doesn't exist, or
 calling a function with the wrong number of arguments.
 
 Some languages require a programmer to explicitly annotate syntactic constructs
 with type information:
 
 ```c++
-int foo = 3+4;
+int foo = 3 + 4;
 ```
 
-Often the types of variables can be inferred by their usage just as in the
-example above. Mun uses type inferencing to determine the type of a variable at
-compile time. However, it does force you to explicitly annotate variables in a
-few locations to ensure a contract between interdependent code.
+However, often variable types can be inferred by their usage, as illustrated
+above. Mun uses type inferencing to determine variable types at compile time.
+You are still forced to explicitly annotate variables in a few locations to ensure
+a contract between interdependent code.
 
 ```mun
 function bar(a:int) {
-    let foo = 3+a
+    let foo = 3 + a
 }
 ```
 
 Here, the parameter `a` must be annotated because it solidifies the signature of
-the function. However, the type of `foo` can be inferred through it's usage.
+the function. The type of `foo` can be inferred through its usage.
 
 ## Numeric types
 
@@ -32,6 +32,6 @@ Mun knows two basic numeric types: `float` and `int`. A `float` is a
 double-precision IEEE 64-bit floating point number and an `int` represents a
 64-bit integral number.
 
-In Mun an `int` can be explicitly casted to `float` but the reverse is not true:
-assigning a `float` to an `int` might cause loss of precision and is therefor
-not allowed implicitly.
+In Mun an `int` can be explicitly cast to `float`, but the reverse is not true.
+Assigning a `float` to an `int` might cause loss of precision and can therefore
+not be cast implicitly.
