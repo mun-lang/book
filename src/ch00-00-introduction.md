@@ -24,11 +24,12 @@
   is changed.
 
 * **Performance**  
-  AOT compilation combined with static typing ensure that Mun is compiled to machine code
-  that can be natively executed on any target platform. LLVM is used for compilation
-  and optimization, guaranteeing the best possible performance. Hot reloading does
-  introduce a slight runtime overhead, but it can be disabled for production
-  builds to ensure the best possible runtime performance.
+  AOT compilation combined with static typing ensure that Mun is compiled to
+  machine code that can be natively executed on any target platform. LLVM is
+  used for compilation and optimization, guaranteeing the best possible
+  performance. Hot reloading does introduce a slight runtime overhead, but it
+  can be disabled for production builds to ensure the best possible runtime
+  performance.
 
 * **Cross compilation**  
   The Mun compiler is able to compile to all supported target platforms from any
