@@ -7,7 +7,7 @@ This repository contains the source of "The Mun Programming Language" book.
 ## Requirements
 
 Building the book requires
-[mdBook](https://github.com/rust-lang-nursery/mdBook), ideally version 0.3.x. To get it:
+[mdBook](https://github.com/rust-lang-nursery/mdBook), ideally version 0.3.x. To install it, run:
 
 ```
 $ cargo install mdbook --vers [version-num]
@@ -21,5 +21,5 @@ To build the book, type:
 $ mdbook build 
 ```
 
-The output will be in the book subdirectory. To check it out open it in your web
+The output will be in the book subdirectory. To view the book, open it in your web
 browser.
