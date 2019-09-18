@@ -1,0 +1,13 @@
+sudo: false
+dist: trusty
+language: rust
+cache: cargo
+rust:
+  - 1.37.0
+branches:
+  only:
+  - master
+before_script:
+  - (cargo install mdbook --vers 0.3.1 --force || true)
+script:
+  - bash ci/build.sh
