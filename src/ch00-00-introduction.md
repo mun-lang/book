@@ -3,7 +3,7 @@
 > Note: Mun & this book are currently under active development, any and all
 > content of this book not final and can still change.
 
-*Mun* is an embedable scripting language designed for developer productivity. 
+*Mun* is an embeddable scripting language designed for developer productivity. 
 
 * **Ahead of time compilation**  
   Mun is compiled ahead of time (AOT), as opposed to being interpreted or
@@ -21,12 +21,12 @@
   Every aspect of Mun is designed with hot reloading in mind. Hot reloading is
   the process of changing code and resources of a live application, removing the
   need to start, stop and recompile an application whenever a function or value
-  needs to be changed.
+  is changed.
 
 * **Performance**  
-  Mun compiles code to optimized machine code using LLVM. Mun's AOT compilation
-  and static typing result in machine code that can be natively executed on a
-  platform, guaranteeing the best possible performance. Hot reloading does
+  AOT compilation combined with static typing ensure that Mun is compiled to machine code
+  that can be natively executed on any target platform. LLVM is used for compilation
+  and optimization, guaranteeing the best possible performance. Hot reloading does
   introduce a slight runtime overhead, but it can be disabled for production
   builds to ensure the best possible runtime performance.
 

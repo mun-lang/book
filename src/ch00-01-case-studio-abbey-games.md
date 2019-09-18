@@ -5,7 +5,7 @@ A collection of case studies that inspired the design choices made in Mun.
 ## Abbey Games
 
 Abbey Games uses Lua as its main gameplay programming language because of Lua's
-ability to hot reload code. This allows for very rapid iteration of game code,
+ability to hot reload code. This allows for rapid iteration of game code,
 enabling gameplay programmers and designers to quickly test and tweak systems
 and content. Lua is a dynamically typed, JIT compiled language. Although this
 has some definite advantages, it also introduces a lot of problems with bigger
