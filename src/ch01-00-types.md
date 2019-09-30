@@ -18,7 +18,7 @@ You are still forced to explicitly annotate variables in a few locations to ensu
 a contract between interdependent code.
 
 ```mun
-function bar(a:int) {
+fn bar(a:int) {
     let foo = 3 + a
 }
 ```
