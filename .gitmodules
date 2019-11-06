@@ -1,0 +1,4 @@
+[submodule "vendor/highlight.js"]
+	path = vendor/highlight.js
+	url = https://github.com/mun-lang/highlight.js.git
+	branch = add-mun
