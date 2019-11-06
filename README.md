@@ -30,7 +30,7 @@ build by invoking the build script:
 Every time you change something in the custom version of highlight.js you have
 to call the above script to ensure you locally use the latest version.
 
-After generating the custom minifed Highlight.js, to build the book, type:
+After generating the custom minified Highlight.js, to build the book, type:
 
 ```
 $ mdbook build 
