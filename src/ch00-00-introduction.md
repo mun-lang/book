@@ -1,7 +1,7 @@
 # Introduction
 
 > Note: Mun & this book are currently under active development, any and all
-> content of this book not final and can still change.
+> content of this book is not final and may still change.
 
 *Mun* is an embeddable scripting language designed for developer productivity. 
 
