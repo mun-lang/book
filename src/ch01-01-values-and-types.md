@@ -24,9 +24,9 @@ fn bar(a:int):int {
 }
 ```
 
-Here, the parameter `a` must be annotated because it solidifies the signature of
-the function, the same goes for return types of a function. The type of `foo`
-can be inferred through its usage.
+Here, the parameter `a` and the return type must be annotated because it solidifies
+the signature of the function. The type of `foo` can be inferred through its
+usage.
 
 ## Basic types
 
@@ -42,9 +42,9 @@ A `bool` has two possible values: `true` and `false`.
 
 ## Implicit & explicit returns
 
-A block is a grouping of statements and expression surrounded by curly braces.
+A block is a grouping of statements and expressions surrounded by curly braces.
 Function bodies are an example of blocks. In Mun, blocks evaluate to the last
-expression in them. Blocks can therefor also be used on the right hand side of a
+expression in them. Blocks can therefore also be used on the right hand side of a
 `let` statement.
 
 ```mun
@@ -60,7 +60,7 @@ fn foo():int {
 ```
 
 Besides implicit returns, explicit returns can also be used with `return`
-expressions. However, explicit `return` statement always returns from the
+expressions. However, explicit `return` statements always return from the
 function, not from the block:
 
 ```mun

@@ -1,9 +1,8 @@
 # Control flow
 
-Deciding whether or not to run some code depending on if a condition is true and
-deciding to run some code repeatedly while a condition is true are basic
-building blocks in most programming languages. The most common constructs that
-let you control the flow of execution of Mun code are if expressions and loops.
+Executing or repeating a block of code only under specific conditions are common
+constructs that allow developers to control the flow of execution. Mun provides
+ `if...else` expressions and loops.
 
 ## `if` expressions
 
@@ -21,21 +20,14 @@ fn main() {
 }
 ```
 
-All `if` expressions start with the keyword `if`, which is followed by a
-condition. Different from many C-like languages parentheses are not required
-around the condition. In this case the condition checks whether or not the variable
-`number` has a value less than 5. The code block we want to execute if the
-condition is true is placed immediately after the condition inside curly
-brackets. Blocks of code associated with the conditions in `if` expressions are
-sometimes called *arms*.
+All `if` expressions start with the keyword `if`, followed by a condition.
+As opposed to many C-like languages, Mun omits parentheses around the
+condition. Only when the condition is true - in the example, whether the `number`
+variable is less than 5 - the consecutive code block (or *arm*) is executed.
 
-Optionally, we can also include an `else` expression, to give the program an
-alternative block of code to execute should the condition evalulate to false. If
-you don't provide an `else` expression and the condition is false, the program
-will just skip the `if` block and move on to the next bit of code.
-
-You can also have multiple conditions by combining `if` and `else` in an `else
-if` expression. For example:
+Optionally, an `else` expression can be added that will be executed when the
+condition evaluates to false. You can also have multiple conditions by combining
+`if` and `else` in an `else if` expression. For example:
 
 ```mun
 fn main() {
@@ -55,8 +47,8 @@ fn main() {
 
 ### Using `if` in a `let` statement
 
-`if` is also an expression, we can use it on the right side of a `let`
-statement just like a block:
+The `if` expression can be used on the right side of a `let` statement
+just like a block:
 
 ```mun
 fn main() {
@@ -68,8 +60,7 @@ fn main() {
     };
 ```
 
-The `number` variable will be bound to a value based on the outcome of the `if`
-expression. The reason for this is that blocks of code evaluate to the last
-expression in them, and numbers by themselves are also expressions. This means
-the values that have the potential to be results from each arm of the `if` must
-be the same type. If the types are mismatched the compiler will report an error.
+Depending on the condition, the `number` variable will be bound to the value
+of the `if` block or the `else` block. This means that both the `if` and `else`
+arms need to evaluate to the same type.
+If the types are mismatched the compiler will report an error.
