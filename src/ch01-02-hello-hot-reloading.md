@@ -27,8 +27,8 @@ embedding them in other programming languages.
 
 ## Mun embedded in C++
 
-Mun [exposes](github.com/mun-lang/runtime-ffi) a C API and complementary c++ bindings for the Mun
-Runtime. Listing 1-3 shows a C++ application that constructs a Mun Runtime for the
+Mun [exposes](https://github.com/mun-lang/runtime-ffi) a C API and complementary C++ bindings for
+the Mun Runtime. Listing 1-3 shows a C++ application that constructs a Mun Runtime for the
 `hello_fibonacci` library and continuously invokes the `fibonacci5` function and outputs its result.
 
 Filename: main.cc
