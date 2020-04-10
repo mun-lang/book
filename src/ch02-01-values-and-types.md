@@ -18,8 +18,8 @@ forced to explicitly annotate variables in a few locations to ensure a contract
 between interdependent code.
 
 ```mun
-fn bar(a:int):int {
-    let foo = 3 + a
+fn bar(a: int) -> int {
+    let foo = 3 + a;
     foo
 }
 ```
@@ -48,14 +48,14 @@ expression in them. Blocks can therefore also be used on the right hand side of 
 `let` statement.
 
 ```mun
-fn foo():int {
+fn foo() -> int {
     let bar = {
         let b = 3;
-        b+3
-    }
+        b + 3
+    };
 
     // `bar` has a value 6
-    bar+3
+    bar + 3
 }
 ```
 
@@ -64,14 +64,14 @@ expressions. However, explicit `return` statements always return from the
 function, not from the block:
 
 ```mun
-fn foo():int {
+fn foo() -> int {
     let bar = {
         let b = 3;
-        return b+3
-    }
+        return b + 3;
+    };
 
     // This code will never be executed
-    return bar+3;
+    return bar + 3;
 }
 ```
 

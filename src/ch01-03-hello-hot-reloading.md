@@ -7,15 +7,15 @@ following example illustrates how you can create a hot reloadable application by
 Filename: hello_fibonacci.mun
 
 ```mun
-fn fibonacci5():int {
+fn fibonacci5() -> int {
     fibonacci(5)
 }
 
-fn fibonacci(n:int):int {
+fn fibonacci(n: int) -> int {
     if n <= 1 {
         n
     } else {
-        fibonacci(n-1) + fibonacci(n-2)
+        fibonacci(n - 1) + fibonacci(n - 2)
     }
 }
 ```
