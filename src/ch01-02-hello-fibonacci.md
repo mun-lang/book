@@ -24,15 +24,15 @@ Open up the new source file and enter the code in Listing 1-1.
 Filename: hello_fibonacci.mun
 
 ```mun
-fn fibonacci5():int {
+fn fibonacci5() -> int {
     fibonacci(5)
 }
 
-fn fibonacci(n:int):int {
+fn fibonacci(n: int) -> int {
     if n <= 1 {
         n
     } else {
-        fibonacci(n-1) + fibonacci(n-2)
+        fibonacci(n - 1) + fibonacci(n - 2)
     }
 }
 ```
