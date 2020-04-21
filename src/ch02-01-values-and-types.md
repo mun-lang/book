@@ -1,4 +1,4 @@
-# Values and types
+## Values and types
 
 Mun is a statically typed language, which helps to detect type-related errors at
 compile-time. A type error is an invalid operation on a given type, such as an
@@ -28,7 +28,7 @@ Here, the parameter `a` and the return type must be annotated because it solidif
 the signature of the function. The type of `foo` can be inferred through its
 usage.
 
-## Basic types
+### Basic types
 
 Mun knows two basic numeric types: `float` and `int`. A `float` is a
 double-precision IEEE 64-bit floating point number and an `int` represents a
@@ -40,7 +40,7 @@ not be cast implicitly.
 
 A `bool` has two possible values: `true` and `false`.
 
-## Implicit & explicit returns
+### Implicit & explicit returns
 
 A block is a grouping of statements and expressions surrounded by curly braces.
 Function bodies are an example of blocks. In Mun, blocks evaluate to the last
@@ -75,6 +75,6 @@ fn foo() -> int {
 }
 ```
 
-## Shadowing
+### Shadowing
 
 > WIP

@@ -1,10 +1,10 @@
-# Control flow
+## Control flow
 
 Executing or repeating a block of code only under specific conditions are common
 constructs that allow developers to control the flow of execution. Mun provides
  `if...else` expressions and loops.
 
-## `if` expressions
+### `if` expressions
 
 An `if` expression allows you to branch your code depending on conditions.
 
@@ -45,7 +45,7 @@ fn main() {
 ```
 
 
-### Using `if` in a `let` statement
+#### Using `if` in a `let` statement
 
 The `if` expression can be used on the right side of a `let` statement
 just like a block:

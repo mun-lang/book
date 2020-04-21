@@ -1,0 +1,16 @@
+pub fn fibonacci_n() -> int {
+    let n = arg();
+    fibonacci(n);
+}
+
+fn arg() -> int {
+    5
+}
+
+fn fibonacci(n: int) -> int {
+    if n <= 1 {
+        n
+    } else {
+        fibonacci(n - 1) + fibonacci(n - 2)
+    }
+}
