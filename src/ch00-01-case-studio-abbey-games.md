@@ -1,8 +1,8 @@
-# Case Studies
+## Case Studies
 
 A collection of case studies that inspired the design choices made in Mun.
 
-## Abbey Games
+### Abbey Games
 
 Abbey Games uses Lua as its main gameplay programming language because of Lua's
 ability to hot reload code. This allows for rapid iteration of game code,

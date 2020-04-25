@@ -55,3 +55,8 @@ by simply running:
 ```
 
 The Netlify deployment works by simply invoking this script. 
+
+### Testing
+
+To test the `rust` source code in the book, run `mdbook -L path/to/target/debug/deps`. For this to
+work, there can only be one `libmun_runtime-{HASH}.rlib` file in the provided library path.
