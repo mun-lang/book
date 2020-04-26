@@ -8,7 +8,7 @@ function has been removed and the `pub` keyword has been added to both `args` an
 Filename: hello_fibonacci.mun
 
 <!-- HACK: Add an extension to support hiding of Mun code -->
-```rust,ignore 
+```mun,ignore 
 {{#include ../listings/ch01-getting-started/listing02.mun}}
 ```
 

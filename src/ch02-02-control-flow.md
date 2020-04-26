@@ -64,3 +64,63 @@ Depending on the condition, the `number` variable will be bound to the value
 of the `if` block or the `else` block. This means that both the `if` and `else`
 arms need to evaluate to the same type.
 If the types are mismatched the compiler will report an error.
+
+
+### `loop` expressions
+
+A `loop` expression can be used to create an infinite loop. Breaking out of the loop is done with the `break` statement.
+
+```mun
+fn main() {
+    let i = 0;
+    loop {
+        if i > 5 {
+            break;
+        }
+
+        i += 1;
+    }
+}
+```
+
+Like an `if`/`else` expression, `loop` blocks can also have a return value which can be returned through the use of a `break` statement. This is valid because only through the use of a `break` statement can the loop be exited.
+
+```mun
+fn count(i: int, n: int) -> int {
+    let loop_count = 0;
+    loop {
+        if i >= n {
+            break loop_count;
+        }
+
+        loop_count += 1;
+    }
+}
+```
+
+All `break` statements in a `loop` must have the same return type.
+
+```mun
+let a = loop {
+    break 3;
+    break; // expected `int`, found `nothing`
+};
+```
+
+
+### `while` expressions
+
+`while` loops execute a block of code as long as a condition holds. A `while` loop starts with the keyword `while` followed by a condition expression and a block of code to execute upon each iteration. Just like with the `if` expression no parentheses are required around the condition expression.
+
+```mun
+fn main() {
+    let i = 0;
+    while i <= 5 {
+        i += 1;
+    }
+}
+```
+
+A `break` statement inside the `while` loop immediately exits the loop.
+
+Unlike a `loop` expression, a `break` in a while loop cannot return a value because a while loop can exit both through the use of a `break` statement and because the condition no longer holds. Although we could explicitly return a value from the `while` loop through the use of a `break` statement it is unclear which value should be returned if the loop exists because the condition no longer holds.
