@@ -13,4 +13,3 @@
     - [Functions](ch02-02-functions.md)
     - [Control flow](ch02-03-control-flow.md)
     - [Extern functions](ch02-04-extern-fn.md)
-

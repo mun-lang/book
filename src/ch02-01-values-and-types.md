@@ -24,42 +24,104 @@ fn bar(a: int) -> int {
 }
 ```
 
-Here, the parameter `a` and the return type must be annotated because it solidifies
-the signature of the function. The type of `foo` can be inferred through its
-usage.
+Here, the parameter `a` and the return type must be annotated because it
+solidifies the signature of the function. The type of `foo` can be inferred
+through its usage.
 
 > NOTE: Although the above works, as of version 0.2, Mun is not yet very good at
 >type inferencing. This will be improved in the future.
 
-### Basic types
+### Scalar types
 
-Mun understands the following built-in basic value types:
+A scalar type represents a single value. Mun has three primary scalar types:
+integers, floating-point numbers, Booleans.
 
-| Type                      | Types
-|---------------------------|---------------------------------------------------|
-| Signed integer types      | `i8`, `i16`, `i32`, `i64`, `i128`, `isize`, `int` |
-| Unsigned integer types    | `u8`, `u16`, `u32`, `u64`, `u128`, `usize`, `uint`|
-| IEEE floating point types | `f32`, `f64`, `float`                             |
-| Boolean type              | `bool` |
+#### Integer types
 
-Most types are defined by their bitness, so `i8` is an unsigned integer, 8 bits
-in size. There are some exceptions:
+An *integer* is a number without a fractional component. Table 2-1 shows
+the built-in integer types in Mun. Each variant in the Signed and Unsigned
+columns (for example, `i16`) can be used to declare the type of an integer
+value.
 
-* `usize` and `isize` are the size as of the pointer architecture, so 64 bits on
-  64 bit platforms and 32 bits on 32 bit plaforms.
-* `int`, `uint` and `float` are convenience values that are always 64 bits in
-  size. These types are *not* aliases for their sized counterparts so `i64 !=
-  int` and therefor implicit casting is not possible.
-  
+<span class="caption">Table 2-1: Integer Types in Mun</span>
+
+| Length   | Signed  | Unsigned |
+|----------|---------|----------|
+| 8-bit    | `i8`    | `u8`     |
+| 16-bit   | `i16`   | `u16`    |
+| 32-bit   | `i32`   | `u32`    |
+| 64-bit   | `i64`   | `u64`    |
+| 128-bit  | `i128`  | `u128`   |
+| arch     | `isize` | `usize`  |
+| compiler | `int`   | `uint`   |
+
+Each variant can be either signed or unsigned and has an explicit size. *Signed*
+and *unsigned* refer to whether it’s possible for the number to be negative or
+positive—in other words, whether the number needs to have a sign with it
+(signed) or whether it will only ever be positive and can therefore be
+represented without a sign (unsigned). It’s like writing numbers on paper: when
+the sign matters, a number is shown with a plus sign or a minus sign; however,
+when it’s safe to assume the number is positive, it’s shown with no sign. Signed
+numbers are stored using [two’s
+complement](https://en.wikipedia.org/wiki/Two%27s_complement) representation.
+
+Each signed variant can store numbers from -(2<sup>n - 1</sup>) to 2<sup>n -
+1</sup> - 1 inclusive, where *n* is the number of bits that variant uses. So an
+`i8` can store numbers from -(2<sup>7</sup>) to 2<sup>7</sup> - 1, which equals
+-128 to 127. Unsigned variants can store numbers from 0 to 2<sup>n</sup> - 1, so
+a `u8` can store numbers from 0 to 2<sup>8</sup> - 1, which equals 0 to 255.
+
+Additionally, the `isize` and `usize` types depend on the kind of computer your
+program is running on: 64-bits if you’re on a 64-bit architecture and 32-bits if
+you’re on 32-bit architecture.
+
+Finally, there are the compiler defined `int` and `uint` types. These are
+convenience types which are currently always 64-bits. These types are *not*
+aliases for their sized counterparts, so `i64 != int` and therefore implicit
+casting is not possible.
+
+#### Floating-Point Types
+
+Mun also has two primitive types for *floating-point numbers*, which are numbers
+with decimal points. Mun's floating-point types are `f32` and `f64`, which are
+32-bits and 64-bits in size, respectively. 
+
+Like with integers there is also a compiler defined `float` which is a 64-bits
+floating-point number. The type is 64-bits because on modern CPUs it’s roughly
+the same speed as 32-bits but is capable of more precision.
+
+```mun
+fn main() {
+    let f = 3.0; // float
+}
+```
+
+Floating-point numbers are represented according to the IEEE-754 standard. The
+`f32` type is a single-precision float, and `float` and `f64` have double
+precision.
+
+#### The Boolean Type
+
+As in most other programming languages, a Boolean type in Mun has two possible
+values: `true` and `false`. Booleans are one byte in size. The Boolean type in
+Mun is specified using `bool`. For example:
+
+```mun
+fn main() {
+    let t = true;
+
+    let f: bool = false; // with explicit type annotation
+}
+```
 
 ### Literals
 
-There are three types of literals in Mun: integer-, floating-point and boolean
+There are three types of literals in Mun: integer, floating-point and boolean
 literals. 
 
 A boolean literal is either `true` or `false`.
 
-An integer literal is a number value without a decimal separator (`.`). It can be
+An integer literal is a number without a decimal separator (`.`). It can be
 written as an decimal, hexadecimal, octal or binary value. These are all
 examples of valid literals:
 
@@ -70,9 +132,9 @@ let c: int = 0o76532;
 let d: int = 0b0101011;
 ```
 
-A floating point literal comes in two forms:
+A floating-point literal comes in two forms:
 
-* A decimal number followed by a decimal which is optionally followed by another
+* A decimal number followed by a dot which is optionally followed by another
   decimal literal and an *optional* exponent.
 * A decimal number followed by an exponent.
 
@@ -100,14 +162,14 @@ let b: float = 1_000.12;
 Integer and floating-point literals may be followed by a type suffix to
 explicitly specify the type of the literal.
 
-For an integer literal valid suffixes are:
+<span class="caption">Table 2-2: Literal suffixes in Mun</span>
 
 | Literal type | Suffixes |
 |--------------|----------|
 |Integer |`u8`, `i8`, `u16`, `i16`, `u32`, `i32`, `u64`, `i64`, `i128`, `u128`, `int`, `uint`, `usize`, `isize`, `f32`, `f64`, `float` |
 | Floating-point | `f32`, `f64`, `float` |
 
-Note that integer literals can have floating point suffixes. This is not the
+Note that integer literals can have floating-point suffixes. This is not the
 case the other way around.
 
 > Note: number literal types in Mun v0.2 are always either `int` or `float`
@@ -128,7 +190,8 @@ let a: u8 = 1123123124124_u8; // literal out of range for `u8`
 
 ### Numeric operations 
 
-Mun supports the basic mathematical operations you'd expect for all number types: addition, subtraction, division, multiplication, and remainder. 
+Mun supports the basic mathematical operations you'd expect for all number
+types: addition, subtraction, division, multiplication, and remainder. 
 
 ```mun
 fn main() {
@@ -149,7 +212,9 @@ fn main() {
 }
 ```
 
-Each expression in these statements uses a mathematical operator and evaluates to a single value. This is valid as long as both sides of the operator are of the same type.
+Each expression in these statements uses a mathematical operator and evaluates
+to a single value. This is valid as long as both sides of the operator are of
+the same type.
 
 Unary operators are also supported:
 
@@ -157,42 +222,6 @@ Unary operators are also supported:
 fn main() {
     let a = 4;
     let b = -a;
-}
-```
-
-
-### Implicit & explicit returns
-
-A block is a grouping of statements and expressions surrounded by curly braces.
-Function bodies are an example of blocks. In Mun, blocks evaluate to the last
-expression in them. Blocks can therefore also be used on the right hand side of a
-`let` statement.
-
-```mun
-fn foo() -> int {
-    let bar = {
-        let b = 3;
-        b + 3
-    };
-
-    // `bar` has a value 6
-    bar + 3
-}
-```
-
-Besides implicit returns, explicit returns can also be used with `return`
-expressions. However, explicit `return` statements always return from the
-function, not from the block:
-
-```mun
-fn foo() -> int {
-    let bar = {
-        let b = 3;
-        return b + 3;
-    };
-
-    // This code will never be executed
-    return bar + 3;
 }
 ```
 
@@ -209,8 +238,8 @@ let a: float = 5.0;
 
 ### Use before initialization
 
-All variables in Mun must be initialized before use. Uninitialized variables can
-be declared but they must be assigned a value before they can be read.
+All variables in Mun must be initialized before usage. Uninitialized variables
+can be declared but they must be assigned a value before they can be read.
 
 ```mun
 let a: int;
@@ -220,10 +249,10 @@ if some_conditional {
 let b = a; // invalid: a is potentially uninitialized
 ```
 
-Note that declaring a variable without a value is often a code smell since the
-above could have better been written by *returning* a value from the `if`/`else`
-block instead of assigning to `a`. This wont require the use of an uninitialized
-value.
+Note that declaring a variable without a value is often a bad code smell since
+the above could have better been written by *returning* a value from the
+`if`/`else` block instead of assigning to `a`. This avoids the use of an
+uninitialized value.
 
 ```mun
 let a: int = if some_conditional {

@@ -20,10 +20,10 @@ fn main() {
 }
 ```
 
-All `if` expressions start with the keyword `if`, followed by a condition.
-As opposed to many C-like languages, Mun omits parentheses around the
-condition. Only when the condition is true - in the example, whether the `number`
-variable is less than 5 - the consecutive code block (or *arm*) is executed.
+All `if` expressions start with the keyword `if`, followed by a condition. As
+opposed to many C-like languages, Mun omits parentheses around the condition.
+Only when the condition is true - in the example, whether the `number` variable
+is less than 5 - the consecutive code block (or *arm*) is executed.
 
 Optionally, an `else` expression can be added that will be executed when the
 condition evaluates to false. You can also have multiple conditions by combining
@@ -60,15 +60,16 @@ fn main() {
     };
 ```
 
-Depending on the condition, the `number` variable will be bound to the value
-of the `if` block or the `else` block. This means that both the `if` and `else`
-arms need to evaluate to the same type.
-If the types are mismatched the compiler will report an error.
+Depending on the condition, the `number` variable will be bound to the value of
+the `if` block or the `else` block. This means that both the `if` and `else`
+arms need to evaluate to the same type. If the types are mismatched the compiler
+will report an error.
 
 
 ### `loop` expressions
 
-A `loop` expression can be used to create an infinite loop. Breaking out of the loop is done with the `break` statement.
+A `loop` expression can be used to create an infinite loop. Breaking out of the
+loop is done with the `break` statement.
 
 ```mun
 fn main() {
@@ -83,7 +84,9 @@ fn main() {
 }
 ```
 
-Like an `if`/`else` expression, `loop` blocks can also have a return value which can be returned through the use of a `break` statement. This is valid because only through the use of a `break` statement can the loop be exited.
+Like an `if`/`else` expression, `loop` blocks can also have a return value which
+can be returned through the use of a `break` statement. This is valid because
+only through the use of a `break` statement can the loop be exited.
 
 ```mun
 fn count(i: int, n: int) -> int {
@@ -110,7 +113,10 @@ let a = loop {
 
 ### `while` expressions
 
-`while` loops execute a block of code as long as a condition holds. A `while` loop starts with the keyword `while` followed by a condition expression and a block of code to execute upon each iteration. Just like with the `if` expression no parentheses are required around the condition expression.
+`while` loops execute a block of code as long as a condition holds. A `while`
+loop starts with the keyword `while` followed by a condition expression and a
+block of code to execute upon each iteration. Just like with the `if`
+expression, no parentheses are required around the condition expression.
 
 ```mun
 fn main() {
@@ -123,4 +129,9 @@ fn main() {
 
 A `break` statement inside the `while` loop immediately exits the loop.
 
-Unlike a `loop` expression, a `break` in a while loop cannot return a value because a while loop can exit both through the use of a `break` statement and because the condition no longer holds. Although we could explicitly return a value from the `while` loop through the use of a `break` statement it is unclear which value should be returned if the loop exists because the condition no longer holds.
+Unlike a `loop` expression, a `break` in a while loop cannot return a value
+because a while loop can exit both through the use of a `break` statement and
+because the condition no longer holds. Although we could explicitly return a
+value from the `while` loop through the use of a `break` statement it is unclear
+which value should be returned if the loop exits because the condition no longer
+holds.
