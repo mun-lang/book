@@ -39,11 +39,11 @@ fn main() {
     another_function(3);
 }
 
-fn another_function(x: int) {
+fn another_function(x: i32) {
 }
 ```
 
-The declaration of `another_function` specifies an argument `x` of the `int`
+The declaration of `another_function` specifies an argument `x` of the `i32`
 type. When you want a function to have multiple arguments separate them by
 comma's:
 
@@ -52,7 +52,7 @@ fn main() {
     another_function(3, 4);
 }
 
-fn another_function(x: int, y: int) {
+fn another_function(x: i32, y: i32) {
 }
 ```
 
@@ -90,7 +90,7 @@ from a function by using the `return` keyword and specifying a value, but most
 functions return the last expression implicitly. 
 
 ```mun
-fn five() -> int {
+fn five() -> i32 {
     5
 }
 
@@ -101,7 +101,7 @@ fn main() {
 
 There are no function calls or statements in the body of the `five` function,
 just the expression `5`. This is perfectly valid Mun. Note that the return type
-is specified too, as `-> int`. 
+is specified too, as `-> i32`. 
 
 ### Implicit & explicit returns
 
@@ -110,7 +110,7 @@ evaluate to the last expression in them. Blocks can therefore also be used on
 the right hand side of `let` statement.
 
 ```mun
-fn foo() -> int {
+fn foo() -> i32 {
     let bar = {
         let b = 3;
         b + 3
@@ -126,7 +126,7 @@ expressions. However, explicit `return` statements always return from the
 function, not from the block:
 
 ```mun
-fn foo() -> int {
+fn foo() -> i32 {
     let bar = {
         let b = 3;
         return b + 3;

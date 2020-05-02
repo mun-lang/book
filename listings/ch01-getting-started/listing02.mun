@@ -1,8 +1,8 @@
-pub fn arg() -> int {
+pub fn arg() -> i64 {
     5
 }
 
-pub fn fibonacci(n: int) -> int {
+pub fn fibonacci(n: i64) -> i64 {
     if n <= 1 {
         n
     } else {

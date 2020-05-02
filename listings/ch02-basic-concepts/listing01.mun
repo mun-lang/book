@@ -1,4 +1,4 @@
-extern fn random() -> int;
+extern fn random() -> i64;
 
 pub fn random_bool() -> bool {
     random() % 2 == 0

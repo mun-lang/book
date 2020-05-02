@@ -89,7 +89,7 @@ can be returned through the use of a `break` statement. This is valid because
 only through the use of a `break` statement can the loop be exited.
 
 ```mun
-fn count(i: int, n: int) -> int {
+fn count(i: i32, n: i32) -> i32 {
     let loop_count = 0;
     loop {
         if i >= n {
@@ -106,7 +106,7 @@ All `break` statements in a `loop` must have the same return type.
 ```mun
 let a = loop {
     break 3;
-    break; // expected `int`, found `nothing`
+    break; // expected `{integer}`, found `nothing`
 };
 ```
 

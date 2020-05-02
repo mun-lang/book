@@ -18,7 +18,7 @@ forced to explicitly annotate variables in a few locations to ensure a contract
 between interdependent code.
 
 ```mun
-fn bar(a: int) -> int {
+fn bar(a: i32) -> i32 {
     let foo = 3 + a;
     foo
 }
@@ -53,7 +53,6 @@ value.
 | 64-bit   | `i64`   | `u64`    |
 | 128-bit  | `i128`  | `u128`   |
 | arch     | `isize` | `usize`  |
-| compiler | `int`   | `uint`   |
 
 Each variant can be either signed or unsigned and has an explicit size. *Signed*
 and *unsigned* refer to whether it’s possible for the number to be negative or
@@ -75,30 +74,20 @@ Additionally, the `isize` and `usize` types depend on the kind of computer your
 program is running on: 64-bits if you’re on a 64-bit architecture and 32-bits if
 you’re on 32-bit architecture.
 
-Finally, there are the compiler defined `int` and `uint` types. These are
-convenience types which are currently always 64-bits. These types are *not*
-aliases for their sized counterparts, so `i64 != int` and therefore implicit
-casting is not possible.
-
 #### Floating-Point Types
 
 Mun also has two primitive types for *floating-point numbers*, which are numbers
 with decimal points. Mun's floating-point types are `f32` and `f64`, which are
 32-bits and 64-bits in size, respectively. 
 
-Like with integers there is also a compiler defined `float` which is a 64-bits
-floating-point number. The type is 64-bits because on modern CPUs it’s roughly
-the same speed as 32-bits but is capable of more precision.
-
 ```mun
 fn main() {
-    let f = 3.0; // float
+    let f = 3.0; // f64
 }
 ```
 
 Floating-point numbers are represented according to the IEEE-754 standard. The
-`f32` type is a single-precision float, and `float` and `f64` have double
-precision.
+`f32` type is a single-precision float, and `f64` has double precision.
 
 #### The Boolean Type
 
@@ -122,14 +111,14 @@ literals.
 A boolean literal is either `true` or `false`.
 
 An integer literal is a number without a decimal separator (`.`). It can be
-written as an decimal, hexadecimal, octal or binary value. These are all
+written as a decimal, hexadecimal, octal or binary value. These are all
 examples of valid literals:
 
 ```mun
-let a: int = 367;
-let b: int = 0xbeaf;
-let c: int = 0o76532;
-let d: int = 0b0101011;
+let a = 367;
+let b = 0xbeaf;
+let c = 0o76532;
+let d = 0b0101011;
 ```
 
 A floating-point literal comes in two forms:
@@ -141,9 +130,9 @@ A floating-point literal comes in two forms:
 Examples of valid floating point literals are:
 
 ```mun
-let a: float = 3.1415;
-let b: float = 3.;
-let c: float = 314.1592654e-2;
+let a: f64 = 3.1415;
+let b: f64 = 3.;
+let c: f64 = 314.1592654e-2;
 ```
 
 #### Separators
@@ -153,8 +142,8 @@ visually separate numbers from one another. They do not have any semantic
 significance but can be useful to the eye.
 
 ```mun
-let a: int = 1_000_000;
-let b: float = 1_000.12;
+let a: i64 = 1_000_000;
+let b: f64 = 1_000.12;
 ```
 
 #### Type suffix
@@ -166,14 +155,11 @@ explicitly specify the type of the literal.
 
 | Literal type | Suffixes |
 |--------------|----------|
-|Integer |`u8`, `i8`, `u16`, `i16`, `u32`, `i32`, `u64`, `i64`, `i128`, `u128`, `int`, `uint`, `usize`, `isize`, `f32`, `f64`, `float` |
-| Floating-point | `f32`, `f64`, `float` |
+|Integer |`u8`, `i8`, `u16`, `i16`, `u32`, `i32`, `u64`, `i64`, `i128`, `u128`, `usize`, `isize`, `f32`, `f64` |
+| Floating-point | `f32`, `f64` |
 
 Note that integer literals can have floating-point suffixes. This is not the
 case the other way around.
-
-> Note: number literal types in Mun v0.2 are always either `int` or `float`
-> unless a suffix is specified.
 
 ```mun
 let a: u8 = 128_u8;
@@ -232,8 +218,8 @@ shadow any previous declaration in the same block. This is often useful if you
 want to change the type of a variable.
 
 ```mun
-let a: int = 3;
-let a: float = 5.0; 
+let a: i32 = 3;
+let a: f64 = 5.0; 
 ```
 
 ### Use before initialization
@@ -242,7 +228,7 @@ All variables in Mun must be initialized before usage. Uninitialized variables
 can be declared but they must be assigned a value before they can be read.
 
 ```mun
-let a: int;
+let a: i32;
 if some_conditional {
     a = 4;
 }
@@ -255,7 +241,7 @@ the above could have better been written by *returning* a value from the
 uninitialized value.
 
 ```mun
-let a: int = if some_conditional {
+let a: i32 = if some_conditional {
     4
 } else {
     5
