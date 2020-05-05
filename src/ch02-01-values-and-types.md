@@ -31,17 +31,18 @@ through its usage.
 > NOTE: Although the above works, as of version 0.2, Mun is not yet very good at
 >type inferencing. This will be improved in the future.
 
-### Scalar types
+### Integer types
 
-A scalar type represents a single value. Mun has three primary scalar types:
-integers, floating-point numbers, Booleans.
-
-#### Integer types
-
-An *integer* is a number without a fractional component. Table 2-1 shows
-the built-in integer types in Mun. Each variant in the Signed and Unsigned
-columns (for example, `i16`) can be used to declare the type of an integer
-value.
+An integer is a number without a decimal part. Mun supports *signed* and
+*unsigned* integers. Signed integers also store a sign which means they can
+either be positive or negative. Unsigned integer types can only represent
+positive numbers. All integer types also have an explicit size. Signed integers
+can store any number from -(2<sup>n - 1</sup>) to 2<sup>n -
+1</sup> - 1 inclusive, where *n* is the number of bits that the type uses. An
+`i8` can store numbers from -(2<sup>7</sup>) to 2<sup>7</sup> - 1 or -128, 127.
+Unsigned integers can store numbers from 0 to 2<sup>n</sup> - 1, so an `u8` can store
+numbers from 0 to 2<sup>8</sup> -1, or 0 to 255. Table 2-1 shows the built-in integer
+types that Mun supports.
 
 <span class="caption">Table 2-1: Integer Types in Mun</span>
 
@@ -54,31 +55,15 @@ value.
 | 128-bit  | `i128`  | `u128`   |
 | arch     | `isize` | `usize`  |
 
-Each variant can be either signed or unsigned and has an explicit size. *Signed*
-and *unsigned* refer to whether it’s possible for the number to be negative or
-positive—in other words, whether the number needs to have a sign with it
-(signed) or whether it will only ever be positive and can therefore be
-represented without a sign (unsigned). It’s like writing numbers on paper: when
-the sign matters, a number is shown with a plus sign or a minus sign; however,
-when it’s safe to assume the number is positive, it’s shown with no sign. Signed
-numbers are stored using [two’s
-complement](https://en.wikipedia.org/wiki/Two%27s_complement) representation.
+The size of the `isize` and `usize` types are defined by the architecture of the
+computer on which the program runs. On 64-bit architectures the `isize` and
+`usize` types are 64 bits whereas on 32-bit architectures they are 32 bits in size.
 
-Each signed variant can store numbers from -(2<sup>n - 1</sup>) to 2<sup>n -
-1</sup> - 1 inclusive, where *n* is the number of bits that variant uses. So an
-`i8` can store numbers from -(2<sup>7</sup>) to 2<sup>7</sup> - 1, which equals
--128 to 127. Unsigned variants can store numbers from 0 to 2<sup>n</sup> - 1, so
-a `u8` can store numbers from 0 to 2<sup>8</sup> - 1, which equals 0 to 255.
+### Floating-Point Types
 
-Additionally, the `isize` and `usize` types depend on the kind of computer your
-program is running on: 64-bits if you’re on a 64-bit architecture and 32-bits if
-you’re on 32-bit architecture.
-
-#### Floating-Point Types
-
-Mun also has two primitive types for *floating-point numbers*, which are numbers
-with decimal points. Mun's floating-point types are `f32` and `f64`, which are
-32-bits and 64-bits in size, respectively. 
+Mun also supports numbers with a decimal representation called *floating-point
+numbers*. These are represented by the `f32` and `f64` types. Similar to the
+integer types the `f32` is 32 bits in size and a `f64` is 64 bits in size.
 
 ```mun
 fn main() {
@@ -86,14 +71,14 @@ fn main() {
 }
 ```
 
-Floating-point numbers are represented according to the IEEE-754 standard. The
-`f32` type is a single-precision float, and `f64` has double precision.
+Mun represents floating points numbers according to the IEEE-754 standard. The
+`f32` type represents a single-precision float, and the type `f64` a double
+precision float.
 
-#### The Boolean Type
+### The Boolean Type
 
-As in most other programming languages, a Boolean type in Mun has two possible
-values: `true` and `false`. Booleans are one byte in size. The Boolean type in
-Mun is specified using `bool`. For example:
+Like in many other programming languages, a Boolean type can either be `true` or
+`false`. Booleans are represented by the `bool` type. They are one byte in size.
 
 ```mun
 fn main() {
