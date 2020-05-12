@@ -33,18 +33,12 @@ through its usage.
 
 ### Integer types
 
-An integer is a number without a decimal part. Mun supports *signed* and
-*unsigned* integers. Signed integers also store a sign which means they can
-either be positive or negative. Unsigned integer types can only represent
-positive numbers. All integer types also have an explicit size. Signed integers
-can store any number from -(2<sup>n - 1</sup>) to 2<sup>n -
-1</sup> - 1 inclusive, where *n* is the number of bits that the type uses. An
-`i8` can store numbers from -(2<sup>7</sup>) to 2<sup>7</sup> - 1 or -128, 127.
-Unsigned integers can store numbers from 0 to 2<sup>n</sup> - 1, so an `u8` can store
-numbers from 0 to 2<sup>8</sup> -1, or 0 to 255. Table 2-1 shows the built-in integer
-types that Mun supports.
+An integer is a number without a fractional component. Table 3-1 shows the
+built-in integer types in Mun. Each variant can be either signed or unsigned
+and has an explicit size. *Signed* and *unsigned* refer to  whether it is
+necessary to have a sign that indicates the possibility for the  number to be
+negative or positive.
 
-<span class="caption">Table 2-1: Integer Types in Mun</span>
 
 | Length   | Signed  | Unsigned |
 |----------|---------|----------|
@@ -55,15 +49,25 @@ types that Mun supports.
 | 128-bit  | `i128`  | `u128`   |
 | arch     | `isize` | `usize`  |
 
-The size of the `isize` and `usize` types are defined by the architecture of the
-computer on which the program runs. On 64-bit architectures the `isize` and
-`usize` types are 64 bits whereas on 32-bit architectures they are 32 bits in size.
+<span class="caption">Table 2-1: Integer Types in Mun</span>
+
+Signed integer types start with `i`, unsigned integer types with `u`, followed 
+by the number of bits that the integer value takes up. Each signed variant can 
+store numbers from -(2<sup>n - 1</sup>) to 2<sup>n - 1</sup> - 1 inclusive, 
+where *n* is the number of bits that variant uses. Unsigned variants can store 
+numbers from 0 to 2<sup>n - 1</sup>. By default Mun uses 32-bit signed
+integers.
+
+The size of the `isize` and `usize` types depend on the target architecture. On
+64-bit architectures,`isize` and `usize` types are 64 bits large, whereas on 32-bit
+architectures they are 32 bits in size.
 
 ### Floating-Point Types
 
-Mun also supports numbers with a decimal representation called *floating-point
-numbers*. These are represented by the `f32` and `f64` types. Similar to the
-integer types the `f32` is 32 bits in size and a `f64` is 64 bits in size.
+Real (or *floating-point*) numbers (i.e. numbers with a fractional component)
+are represented according to the IEEE-754 standard. The `f32` type is a
+single-precision float of 32 bits, and the `f64` type has double precision -
+requiring 64 bits.
 
 ```mun
 fn main() {
@@ -71,14 +75,11 @@ fn main() {
 }
 ```
 
-Mun represents floating points numbers according to the IEEE-754 standard. The
-`f32` type represents a single-precision float, and the type `f64` a double
-precision float.
 
 ### The Boolean Type
 
-Like in many other programming languages, a Boolean type can either be `true` or
-`false`. Booleans are represented by the `bool` type. They are one byte in size.
+The `bool` (or *boolean*) type has two values, `true` and `false`, that are
+used to  evaluate conditions. It takes up one 1 byte (or 8 bits).
 
 ```mun
 fn main() {
@@ -112,7 +113,7 @@ A floating-point literal comes in two forms:
   decimal literal and an *optional* exponent.
 * A decimal number followed by an exponent.
 
-Examples of valid floating point literals are:
+Examples of valid floating-point literals are:
 
 ```mun
 let a: f64 = 3.1415;
@@ -136,12 +137,12 @@ let b: f64 = 1_000.12;
 Integer and floating-point literals may be followed by a type suffix to
 explicitly specify the type of the literal.
 
-<span class="caption">Table 2-2: Literal suffixes in Mun</span>
-
 | Literal type | Suffixes |
 |--------------|----------|
 |Integer |`u8`, `i8`, `u16`, `i16`, `u32`, `i32`, `u64`, `i64`, `i128`, `u128`, `usize`, `isize`, `f32`, `f64` |
 | Floating-point | `f32`, `f64` |
+
+<span class="caption">Table 2-2: Literal suffixes in Mun</span>
 
 Note that integer literals can have floating-point suffixes. This is not the
 case the other way around.
@@ -153,7 +154,7 @@ let c: f32 = 10_f32; // integer literal with float suffix
 ```
 
 When providing a literal, the compiler will always check if a literal value will
-fit the type. If the literal won't fit in the type an error will be emitted:
+fit the type. If not, an error will be emitted:
 
 ```mun
 let a: u8 = 1123123124124_u8; // literal out of range for `u8`
@@ -161,8 +162,8 @@ let a: u8 = 1123123124124_u8; // literal out of range for `u8`
 
 ### Numeric operations 
 
-Mun supports the basic mathematical operations you'd expect for all number
-types: addition, subtraction, division, multiplication, and remainder. 
+Mun supports all basic mathematical operations for number types: addition,
+subtraction, division, multiplication, and remainder.
 
 ```mun
 fn main() {
@@ -184,15 +185,20 @@ fn main() {
 ```
 
 Each expression in these statements uses a mathematical operator and evaluates
-to a single value. This is valid as long as both sides of the operator are of
-the same type.
+to a single value. This is valid as long as both sides of the operator have the
+same type.
 
 Unary operators are also supported:
 
 ```mun
 fn main() {
     let a = 4;
+    // negate
     let b = -a;
+    
+    let c = true;
+    // not
+    let d = !c;
 }
 ```
 

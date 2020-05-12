@@ -2,7 +2,7 @@
 
 Executing or repeating a block of code only under specific conditions are common
 constructs that allow developers to control the flow of execution. Mun provides
- `if...else` expressions and loops.
+ `if`/`else` expressions and loops.
 
 ### `if` expressions
 
@@ -69,7 +69,7 @@ will report an error.
 ### `loop` expressions
 
 A `loop` expression can be used to create an infinite loop. Breaking out of the
-loop is done with the `break` statement.
+loop is done using the `break` statement.
 
 ```mun
 fn main() {
@@ -84,9 +84,8 @@ fn main() {
 }
 ```
 
-Like an `if`/`else` expression, `loop` blocks can also have a return value which
-can be returned through the use of a `break` statement. This is valid because
-only through the use of a `break` statement can the loop be exited.
+Similar to `if`/`else` expressions, `loop` blocks can have a return value that
+can be returned through the use of a `break` statement.
 
 ```mun
 fn count(i: i32, n: i32) -> i32 {
