@@ -1,13 +1,13 @@
-pub fn fibonacci_n() -> int {
+pub fn fibonacci_n() -> i64 {
     let n = arg();
     fibonacci(n);
 }
 
-fn arg() -> int {
+fn arg() -> i64 {
     5
 }
 
-fn fibonacci(n: int) -> int {
+fn fibonacci(n: i64) -> i64 {
     if n <= 1 {
         n
     } else {

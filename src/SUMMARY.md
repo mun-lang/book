@@ -10,5 +10,6 @@
 
 - [Basic concepts](ch02-00-basic-concepts.md)
     - [Values and types](ch02-01-values-and-types.md)
-    - [Control flow](ch02-02-control-flow.md)
-
+    - [Functions](ch02-02-functions.md)
+    - [Control flow](ch02-03-control-flow.md)
+    - [Extern functions](ch02-04-extern-fn.md)
