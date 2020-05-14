@@ -119,7 +119,7 @@ calculating the buoyancy force is *force = submerged volume \* water density \*
 gravity*.
 
 ```mun
-{{#include ../listings/ch03-structs/listing17.mun:51:72}}
+{{#include ../listings/ch03-structs/listing17.mun:51:73}}
 ```
 
 Next we need to convert force into acceleration using *acc = force / mass*. We
@@ -142,7 +142,7 @@ this time only initializing the sphere and incrementing `hot_reload_token` to
 `2`:
 
 ```mun
-{{#include ../listings/ch03-structs/listing17.mun:79:83}}
+{{#include ../listings/ch03-structs/listing17.mun:80:84}}
 ```
 
 Editing a field's name is only one of three ways that you can edit struct fields
@@ -183,7 +183,7 @@ Last but not least, let's log the sphere's height to the console, so we can
 verify that the simulation is running correctly.
 
 ```mun
-{{#include ../listings/ch03-structs/listing17.mun:85:104}}
+{{#include ../listings/ch03-structs/listing17.mun:86:105}}
 ```
 
 When the simulation has been hot reloaded, the console should now log height
