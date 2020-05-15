@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/v0.2/*"
+  to = "https://release-v0-2--loving-easley-a25f90.netlify.app/:splat"
+  status = 200
